@@ -76,9 +76,15 @@ export default function Footer() {
           <p className="text-xs text-gray-500">
             &copy; {new Date().getFullYear()} CozyHub Commerce. All rights reserved.
           </p>
-          <p className="text-xs text-gray-500">
-            Built for B2B Ecommerce Growth
-          </p>
+          <div className="flex items-center gap-4">
+            <p className="text-xs text-gray-500">Built for B2B Ecommerce Growth</p>
+            <Link
+              href="/admin/login"
+              className="text-xs text-gray-600 hover:text-gray-400 transition-colors"
+            >
+              Admin Login
+            </Link>
+          </div>
         </div>
       </div>
     </footer>
