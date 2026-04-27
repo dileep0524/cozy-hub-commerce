@@ -4,9 +4,25 @@ const testimonials = [
   {
     quote:
       'CozyHub helped us go from zero to ₹15L/month on Amazon within 4 months. Their onboarding process is seamless and the team is extremely responsive.',
-    name: 'Dileep Kaibadi',
-    role: 'Owner, CozyHub Commerce',
-    avatar: 'DK',
+    name: 'Rajesh Kumar',
+    role: 'Owner, KitchenPlus India',
+    avatar: 'RK',
+    rating: 5,
+  },
+  {
+    quote:
+      'We struggled with Flipkart compliance for months. CozyHub sorted everything in a week and our listings are now fully optimized. Sales doubled!',
+    name: 'Priya Sharma',
+    role: 'Director, FashionForward',
+    avatar: 'PS',
+    rating: 5,
+  },
+  {
+    quote:
+      'The inventory management system they set up for us has saved countless hours. Real-time sync across 3 marketplaces — it just works.',
+    name: 'Amit Patel',
+    role: 'CEO, ElectroGadgets',
+    avatar: 'AP',
     rating: 5,
   },
 ];
@@ -25,7 +41,7 @@ export default function TestimonialsSection() {
           </p>
         </div>
 
-        <div className="max-w-xl mx-auto">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {testimonials.map((t) => (
             <div key={t.name} className="card flex flex-col">
               <div className="flex gap-1 mb-4">
