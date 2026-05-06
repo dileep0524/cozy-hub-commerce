@@ -28,6 +28,7 @@ module.exports = {
         'fade-in': 'fadeIn 0.5s ease-in-out',
         'slide-up': 'slideUp 0.5s ease-out',
         'count-up': 'countUp 2s ease-out',
+        'dropdown-enter': 'dropdownEnter 0.15s ease-out forwards',
       },
       keyframes: {
         fadeIn: {
@@ -37,6 +38,10 @@ module.exports = {
         slideUp: {
           '0%': { opacity: '0', transform: 'translateY(20px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        dropdownEnter: {
+          '0%': { opacity: '0', transform: 'translateY(-6px) scale(0.98)' },
+          '100%': { opacity: '1', transform: 'translateY(0) scale(1)' },
         },
       },
     },

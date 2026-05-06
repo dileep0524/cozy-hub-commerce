@@ -27,7 +27,7 @@ export default function About() {
         {/* Hero */}
         <section className="bg-gradient-to-br from-brand-600 to-brand-800 text-white py-20">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-4xl sm:text-5xl font-bold mb-6">About CozyHub Commerce</h1>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">About CozyHub Commerce</h1>
             <p className="text-lg text-blue-100 max-w-2xl mx-auto">
               We started with a simple mission: make ecommerce accessible and profitable for every
               Indian business, regardless of size.
@@ -41,7 +41,7 @@ export default function About() {
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div>
                 <span className="text-brand-600 font-semibold text-sm uppercase tracking-wider">Our Story</span>
-                <h2 className="text-3xl font-bold text-gray-900 mt-2 mb-6">
+                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mt-2 mb-6">
                   From Sellers to Solutions Providers
                 </h2>
                 <p className="text-gray-600 leading-relaxed mb-4">
@@ -90,7 +90,7 @@ export default function About() {
               <span className="text-brand-600 font-semibold text-sm uppercase tracking-wider">The Team</span>
               <h2 className="section-title mt-2">People Behind CozyHub</h2>
             </div>
-            <div className="grid sm:grid-cols-3 gap-8">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {team.map((member) => (
                 <div key={member.name} className="card text-center">
                   <div className="w-16 h-16 rounded-2xl bg-brand-600 flex items-center justify-center text-white text-xl font-bold mx-auto mb-4">

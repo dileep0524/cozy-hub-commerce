@@ -66,7 +66,7 @@ export default function Services() {
         {/* Hero */}
         <section className="bg-gradient-to-br from-brand-600 to-brand-800 text-white py-20">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-4xl sm:text-5xl font-bold mb-4">Services & Pricing</h1>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">Services & Pricing</h1>
             <p className="text-lg text-blue-100">
               Transparent, value-driven pricing. No lock-ins.
             </p>

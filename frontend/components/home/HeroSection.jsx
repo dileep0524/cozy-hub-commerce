@@ -26,13 +26,13 @@ export default function HeroSection() {
               500+ Businesses Onboarded
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+            <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold leading-tight mb-6">
               Scale Your Business with{' '}
               <span className="text-yellow-300">CozyHub</span>{' '}
               Commerce
             </h1>
 
-            <p className="text-lg text-blue-100 mb-8 leading-relaxed max-w-xl">
+            <p className="text-base sm:text-lg text-blue-100 mb-8 leading-relaxed max-w-xl">
               Your complete B2B ecommerce solutions partner. We handle Amazon &amp; Flipkart
               onboarding, inventory management, listing optimization, and everything in between.
             </p>
