@@ -44,8 +44,8 @@ export default function HeroSection() {
                 Start Selling Online
                 <ArrowRightIcon className="w-4 h-4 ml-2" />
               </Link>
-              <Link href="/services" className="btn-secondary">
-                Explore Services
+              <Link href="/plans" className="btn-secondary">
+                Explore Plans
               </Link>
             </div>
           </div>

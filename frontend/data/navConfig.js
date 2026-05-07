@@ -60,9 +60,16 @@ export const NAV_ITEMS = [
     label: 'Plans', href: '/plans'},
   {
     label: 'Free Onboarding',
+    href: '/onboarding',
     children: [
-      { label: 'Amazon global onboarding', href: '/onboarding/amazon' },
-      { label: 'eBay onboarding', href: '/onboarding/ebay' },
+      { label: 'Amazon free onboarding', href: '/onboarding/amazon' },
+      { label: 'Flipkart free onboarding', href: '/onboarding/flipkart' },
+      { label: 'Meesho free onboarding', href: '/onboarding/meesho' },
+      { label: 'JioMart free onboarding', href: '/onboarding/jiomart' },
+      { label: 'eBay free onboarding', href: '/onboarding/ebay' },
+      { label: 'Etsy free onboarding', href: '/onboarding/etsy' },
+      { label: 'Walmart free onboarding', href: '/onboarding/walmart' },
+      { label: 'Alibaba free onboarding', href: '/onboarding/alibaba' },
     ],
   },
   {
