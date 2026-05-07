@@ -11,12 +11,11 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    overflow-x: hidden;
   }
 
   body {
     @apply font-sans text-gray-900 antialiased;
-    overflow-x: hidden;
+    overflow-x: clip;
   }
 }
 

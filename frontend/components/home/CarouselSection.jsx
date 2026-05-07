@@ -6,15 +6,24 @@ import { getActiveSlides } from '@/services/carousel';
 const defaultSlides = [
   {
     id: 'default-1',
+    title: 'Start Selling Online — Free Onboarding',
+    subtitle: 'Get your seller account set up, verified, and live at zero cost. Our specialists handle everything from documentation to your very first sale.',
+    cta_text: 'Claim Free Onboarding',
+    cta_link: '/contact',
+    badge_text: '🎉 Free Onboarding — No Hidden Fees',
+    bg_color: 'from-emerald-600 via-teal-700 to-brand-900',
+  },
+  {
+    id: 'default-2',
     title: 'Scale Your Business with CozyHub Commerce',
     subtitle: 'Complete Amazon & Flipkart onboarding, inventory management, and listing optimisation — all in one place.',
     cta_text: 'Get Started',
     cta_link: '/contact',
-    badge_text: '500+ Businesses Onboarded',
+    badge_text: '800+ Businesses Onboarded',
     bg_color: 'from-brand-600 via-brand-700 to-brand-900',
   },
   {
-    id: 'default-2',
+    id: 'default-3',
     title: 'Go Live on Amazon in Just 7 Days',
     subtitle: 'Our dedicated team handles verification, GST setup, brand registry, and your first 50 listings.',
     cta_text: 'Start Onboarding',
@@ -23,7 +32,7 @@ const defaultSlides = [
     bg_color: 'from-indigo-600 via-indigo-700 to-indigo-900',
   },
   {
-    id: 'default-3',
+    id: 'default-4',
     title: 'Smart Inventory. Zero Stockouts.',
     subtitle: 'Real-time multi-warehouse inventory tracking with automated reorder alerts across all marketplaces.',
     cta_text: 'Learn More',
