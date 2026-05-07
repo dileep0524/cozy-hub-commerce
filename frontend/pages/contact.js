@@ -7,19 +7,19 @@ const contactInfo = [
   {
     icon: EnvelopeIcon,
     label: 'Email Us',
-    value: 'hello@cozyhubcommerce.com',
+    value: 'dileepkaibadi240504@gmail.com',
     href: 'mailto:hello@cozyhubcommerce.com',
   },
   {
     icon: PhoneIcon,
     label: 'Call Us',
-    value: '+91 98765 43210',
+    value: '+91 63040 92466',
     href: 'tel:+919876543210',
   },
   {
     icon: MapPinIcon,
     label: 'Office',
-    value: 'Mumbai, Maharashtra, India',
+    value: 'Chennai, TamilNadu, India',
     href: null,
   },
 ];

@@ -11,9 +11,8 @@ const values = [
 ];
 
 const team = [
-  { name: 'Arjun Mehta', role: 'Founder & CEO', initials: 'AM', bio: '10+ years in B2B ecommerce. Ex-Amazon seller consultant.' },
-  { name: 'Neha Verma', role: 'Head of Operations', initials: 'NV', bio: 'Operations specialist with expertise in Flipkart fulfilment.' },
-  { name: 'Rohan Das', role: 'Tech Lead', initials: 'RD', bio: 'Builds the tools that power our clients\' inventory systems.' },
+  { name: 'Dileep Kaibadi', role: 'Founder & CEO', initials: 'AM', bio: '10+ years in B2B ecommerce. Ex-Amazon seller consultant.' },
+  { name: 'Som Chandra', role: 'Co Founder & Head of Operations', initials: 'NV', bio: 'Operations specialist with expertise in Flipkart fulfilment.' },
 ];
 
 export default function About() {
@@ -90,7 +89,7 @@ export default function About() {
               <span className="text-brand-600 font-semibold text-sm uppercase tracking-wider">The Team</span>
               <h2 className="section-title mt-2">People Behind CozyHub</h2>
             </div>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-8">
               {team.map((member) => (
                 <div key={member.name} className="card text-center">
                   <div className="w-16 h-16 rounded-2xl bg-brand-600 flex items-center justify-center text-white text-xl font-bold mx-auto mb-4">

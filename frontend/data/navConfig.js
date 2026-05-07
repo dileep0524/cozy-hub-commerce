@@ -3,10 +3,13 @@ export const NAV_ITEMS = [
   {
     label: 'Services',
     children: [
-      { label: 'Amazon seller account management registration', href: '/services/amazon' },
-      { label: 'Flipkart seller account management registration', href: '/services/flipkart' },
-      { label: 'Meesho seller account management registration', href: '/services/meesho' },
-      { label: 'Jiomart seller account management registration', href: '/services/jiomart' },
+      { label: 'Alibaba seller account management', href: '/management/alibaba' },
+      { label: 'Amazon seller account management', href: '/management/amazon' },
+      { label: 'Etsy seller account management', href: '/management/etsy' },
+      { label: 'Walmart seller account management', href: '/management/walmart' },
+      { label: 'Flipkart seller account management', href: '/management/flipkart' },
+      { label: 'Jiomart seller account management', href: '/management/jiomart' },
+      { label: 'Meesho seller account management', href: '/management/meesho' },
     ],
   },
   {
@@ -52,19 +55,9 @@ export const NAV_ITEMS = [
       },
     ],
   },
-  { label: 'Blogs', href: '/blogs' },
+  
   {
-    label: 'Ecommerce Management',
-    children: [
-      { label: 'Alibaba seller account management', href: '/management/alibaba' },
-      { label: 'Amazon seller account management', href: '/management/amazon' },
-      { label: 'Etsy seller account management', href: '/management/etsy' },
-      { label: 'Walmart seller account management', href: '/management/walmart' },
-      { label: 'Flipkart seller account management', href: '/management/flipkart' },
-      { label: 'Jiomart seller account management', href: '/management/jiomart' },
-      { label: 'Meesho seller account management', href: '/management/meesho' },
-    ],
-  },
+    label: 'Plans', href: '/plans'},
   {
     label: 'Free Onboarding',
     children: [
@@ -79,4 +72,5 @@ export const NAV_ITEMS = [
       { label: 'Contact Us', href: '/contact' },
     ],
   },
+  { label: 'Blogs', href: '/blogs' },
 ];
