@@ -6,7 +6,7 @@ import { CheckIcon, XMarkIcon } from '@heroicons/react/24/outline';
 const plans = [
   {
     name: 'Basic',
-    price: '₹999',
+    price: '₹4,999',
     period: '/month',
     description: 'Perfect for first-time sellers launching on a single marketplace.',
     highlight: false,
@@ -28,7 +28,7 @@ const plans = [
   },
   {
     name: 'Standard',
-    price: '₹2,000',
+    price: '₹7,499',
     period: '/month',
     description: 'For growing sellers expanding across multiple marketplaces.',
     highlight: true,
@@ -50,7 +50,7 @@ const plans = [
   },
   {
     name: 'Premium',
-    price: '₹3,500',
+    price: '₹11,999',
     period: '/month',
     description: 'Full-service management for serious sellers scaling across markets.',
     highlight: false,
