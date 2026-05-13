@@ -32,21 +32,6 @@ function TopupModal({ onClose, onSuccess }) {
       const res = await initiateTopup(amt);
       const { razorpay_order_id, amount: amtPaise, currency, key_id } = res.data;
 
-      // Test mode — no real Razorpay key
-      if (key_id === 'rzp_test_placeholder') {
-        await verifyTopup({
-          razorpay_order_id,
-          razorpay_payment_id: 'pay_test_' + Date.now(),
-          razorpay_signature: 'test_sig',
-          amount: amt,
-        });
-        toast.success(`₹${amt} added to wallet (test mode)`);
-        onSuccess();
-        onClose();
-        return;
-      }
-
-      // Real Razorpay checkout
       const options = {
         key: key_id,
         amount: amtPaise,

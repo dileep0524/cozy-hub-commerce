@@ -62,14 +62,8 @@ func (s *walletService) GetTransactions(sellerID string, page, limit int) ([]mod
 }
 
 func (s *walletService) InitiateTopup(sellerID string, req dto.TopupInitiateRequest) (*dto.TopupInitiateResponse, error) {
-	// Test mode — no Razorpay keys configured
-	if s.cfg.RazorpayKeyID == "" {
-		return &dto.TopupInitiateResponse{
-			RazorpayOrderID: "order_test_" + sellerID[:8],
-			Amount:          int64(req.Amount * 100),
-			Currency:        "INR",
-			KeyID:           "rzp_test_placeholder",
-		}, nil
+	if s.cfg.RazorpayKeyID == "" || s.cfg.RazorpayKeySecret == "" {
+		return nil, errors.New("payment gateway not configured")
 	}
 
 	amountPaise := int64(req.Amount * 100)
@@ -117,15 +111,13 @@ func (s *walletService) VerifyTopup(sellerID string, req dto.TopupVerifyRequest)
 		return err
 	}
 
-	// Verify Razorpay signature (skip in test mode)
-	if s.cfg.RazorpayKeySecret != "" {
-		message := req.RazorpayOrderID + "|" + req.RazorpayPaymentID
-		mac := hmac.New(sha256.New, []byte(s.cfg.RazorpayKeySecret))
-		mac.Write([]byte(message))
-		expected := hex.EncodeToString(mac.Sum(nil))
-		if !hmac.Equal([]byte(expected), []byte(req.RazorpaySignature)) {
-			return errors.New("payment verification failed: invalid signature")
-		}
+	// Always verify Razorpay signature
+	message := req.RazorpayOrderID + "|" + req.RazorpayPaymentID
+	mac := hmac.New(sha256.New, []byte(s.cfg.RazorpayKeySecret))
+	mac.Write([]byte(message))
+	expected := hex.EncodeToString(mac.Sum(nil))
+	if !hmac.Equal([]byte(expected), []byte(req.RazorpaySignature)) {
+		return errors.New("payment verification failed: invalid signature")
 	}
 
 	wallet, err := s.walletRepo.FindBySellerID(sUID)
