@@ -115,9 +115,6 @@ export default function AdminLogin() {
             </form>
           </div>
 
-          <p className="text-center mt-6 text-xs text-gray-400">
-            Default: admin@cozyhub.com / Admin@123
-          </p>
         </div>
       </div>
     </>
