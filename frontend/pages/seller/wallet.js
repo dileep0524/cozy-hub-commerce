@@ -22,6 +22,9 @@ const TYPE_CONFIG = {
 
 function TopupModal({ onClose, onSuccess }) {
   const [amount, setAmount] = useState('');
+  const parsedAmt = parseFloat(amount) || 0;
+  const gatewayFee = parsedAmt > 0 ? Math.round(parsedAmt * 0.025 * 100) / 100 : 0;
+  const totalCharged = parsedAmt + gatewayFee;
   const [loading, setLoading] = useState(false);
 
   const handleTopup = async () => {
@@ -30,14 +33,14 @@ function TopupModal({ onClose, onSuccess }) {
     setLoading(true);
     try {
       const res = await initiateTopup(amt);
-      const { razorpay_order_id, amount: amtPaise, currency, key_id } = res.data;
+      const { razorpay_order_id, amount: amtPaise, wallet_amount, currency, key_id } = res.data;
 
       const options = {
         key: key_id,
         amount: amtPaise,
         currency,
         name: 'CozyHub Commerce',
-        description: 'Wallet Top-up',
+        description: `Wallet Top-up (incl. 2.5% fee)`,
         order_id: razorpay_order_id,
         handler: async (response) => {
           try {
@@ -45,9 +48,9 @@ function TopupModal({ onClose, onSuccess }) {
               razorpay_order_id: response.razorpay_order_id,
               razorpay_payment_id: response.razorpay_payment_id,
               razorpay_signature: response.razorpay_signature,
-              amount: amt,
+              amount: wallet_amount,
             });
-            toast.success(`₹${amt} added to wallet`);
+            toast.success(`₹${wallet_amount.toLocaleString('en-IN', { minimumFractionDigits: 2 })} added to wallet`);
             onSuccess();
             onClose();
           } catch (err) {
@@ -98,10 +101,26 @@ function TopupModal({ onClose, onSuccess }) {
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
           placeholder="Enter amount (min ₹100)"
-          className="input-field mb-4"
+          className="input-field"
           min={100}
         />
-        <div className="flex gap-3">
+        {parsedAmt >= 100 && (
+          <div className="mt-3 mb-1 rounded-xl bg-gray-50 border border-gray-200 px-4 py-3 text-sm space-y-1.5">
+            <div className="flex justify-between text-gray-500">
+              <span>Wallet credit</span>
+              <span>₹{parsedAmt.toLocaleString('en-IN', { minimumFractionDigits: 2 })}</span>
+            </div>
+            <div className="flex justify-between text-gray-500">
+              <span>Gateway fee (2.5%)</span>
+              <span>₹{gatewayFee.toLocaleString('en-IN', { minimumFractionDigits: 2 })}</span>
+            </div>
+            <div className="flex justify-between font-semibold text-gray-900 border-t border-gray-200 pt-1.5">
+              <span>Total charged</span>
+              <span>₹{totalCharged.toLocaleString('en-IN', { minimumFractionDigits: 2 })}</span>
+            </div>
+          </div>
+        )}
+        <div className="flex gap-3 mt-4">
           <button onClick={onClose} className="btn-secondary flex-1">Cancel</button>
           <button
             onClick={handleTopup}

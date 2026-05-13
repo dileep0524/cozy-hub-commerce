@@ -9,6 +9,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"math"
 	"net/http"
 
 	"github.com/dileep0524/cozy-hub-commerce/backend/internal/config"
@@ -66,9 +67,13 @@ func (s *walletService) InitiateTopup(sellerID string, req dto.TopupInitiateRequ
 		return nil, errors.New("payment gateway not configured")
 	}
 
-	amountPaise := int64(req.Amount * 100)
+	// 2.5% gateway surcharge — seller is charged more, wallet gets only what they asked for
+	gatewayFee := math.Round(req.Amount*0.025*100) / 100
+	chargedAmount := req.Amount + gatewayFee
+	chargedPaise := int64(math.Round(chargedAmount * 100))
+
 	payload := map[string]interface{}{
-		"amount":   amountPaise,
+		"amount":   chargedPaise,
 		"currency": "INR",
 	}
 	body, _ := json.Marshal(payload)
@@ -99,7 +104,9 @@ func (s *walletService) InitiateTopup(sellerID string, req dto.TopupInitiateRequ
 	orderID, _ := result["id"].(string)
 	return &dto.TopupInitiateResponse{
 		RazorpayOrderID: orderID,
-		Amount:          amountPaise,
+		Amount:          chargedPaise,
+		WalletAmount:    req.Amount,
+		GatewayFee:      gatewayFee,
 		Currency:        "INR",
 		KeyID:           s.cfg.RazorpayKeyID,
 	}, nil
