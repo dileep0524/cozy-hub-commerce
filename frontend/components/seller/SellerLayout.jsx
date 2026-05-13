@@ -3,39 +3,33 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import {
   HomeIcon,
-  InboxIcon,
-  ChartBarIcon,
-  PhotoIcon,
+  ShoppingCartIcon,
+  WalletIcon,
+  DocumentTextIcon,
   ArrowRightOnRectangleIcon,
   ShoppingBagIcon,
   Bars3Icon,
   XMarkIcon,
-  CubeIcon,
-  UsersIcon,
-  ShoppingCartIcon,
+  UserCircleIcon,
 } from '@heroicons/react/24/outline';
-import useAdminStore from '@/store/adminStore';
-import { useAdmin } from '@/hooks/useAdmin';
+import useSellerStore from '@/store/sellerStore';
+import { useSeller } from '@/hooks/useSeller';
 
 const navItems = [
-  { href: '/admin/dashboard', label: 'Dashboard', icon: HomeIcon },
-  { href: '/admin/enquiries', label: 'Enquiries', icon: InboxIcon },
-  { href: '/admin/carousel', label: 'Carousel', icon: PhotoIcon },
-  { href: '/admin/products', label: 'Products', icon: CubeIcon },
-  { href: '/admin/sellers', label: 'Sellers', icon: UsersIcon },
-  { href: '/admin/orders', label: 'Orders', icon: ShoppingCartIcon },
-  { href: '/admin/dashboard', label: 'Analytics', icon: ChartBarIcon },
+  { href: '/seller/dashboard', label: 'Dashboard', icon: HomeIcon },
+  { href: '/seller/orders', label: 'My Orders', icon: ShoppingCartIcon },
+  { href: '/seller/wallet', label: 'Wallet', icon: WalletIcon },
 ];
 
-export default function AdminLayout({ children, title }) {
+export default function SellerLayout({ children, title }) {
   const router = useRouter();
-  const { admin, ready } = useAdmin();
-  const logout = useAdminStore((s) => s.logout);
+  const { seller, ready } = useSeller();
+  const { wallet, logout } = useSellerStore();
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleLogout = () => {
     logout();
-    router.push('/admin/login');
+    router.push('/');
   };
 
   const navLinks = (
@@ -45,8 +39,10 @@ export default function AdminLayout({ children, title }) {
         <div className="w-7 h-7 bg-brand-600 rounded-lg flex items-center justify-center">
           <ShoppingBagIcon className="w-4 h-4 text-white" />
         </div>
-        <span className="font-bold text-gray-900 text-sm flex-1">CozyHub Admin</span>
-        {/* Close button — mobile only */}
+        <div className="flex-1 min-w-0">
+          <span className="font-bold text-gray-900 text-sm">Seller Panel</span>
+          <p className="text-xs text-gray-400 truncate">CozyHub Commerce</p>
+        </div>
         <button
           onClick={() => setMobileOpen(false)}
           className="md:hidden p-1 rounded-lg text-gray-400 hover:text-gray-600"
@@ -55,10 +51,20 @@ export default function AdminLayout({ children, title }) {
         </button>
       </div>
 
+      {/* Wallet balance chip */}
+      {wallet && (
+        <div className="mx-3 mt-3 px-3 py-2 bg-brand-50 rounded-lg border border-brand-100">
+          <p className="text-xs text-brand-600 font-medium">Wallet Balance</p>
+          <p className="text-lg font-bold text-brand-700">
+            ₹{wallet.balance?.toLocaleString('en-IN', { minimumFractionDigits: 2 })}
+          </p>
+        </div>
+      )}
+
       {/* Nav links */}
       <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
         {navItems.map((item) => {
-          const active = router.pathname === item.href || router.pathname.startsWith(item.href + '/');
+          const active = router.pathname.startsWith(item.href);
           return (
             <Link
               key={item.href}
@@ -81,11 +87,11 @@ export default function AdminLayout({ children, title }) {
       <div className="p-4 border-t border-gray-100 flex-shrink-0">
         <div className="flex items-center gap-3 mb-3">
           <div className="w-8 h-8 rounded-full bg-brand-600 flex items-center justify-center text-white text-xs font-bold flex-shrink-0">
-            {admin?.username?.[0]?.toUpperCase() || 'A'}
+            {seller?.name?.[0]?.toUpperCase() || 'S'}
           </div>
           <div className="min-w-0">
-            <p className="text-sm font-medium text-gray-900 truncate">{admin?.username || 'Admin'}</p>
-            <p className="text-xs text-gray-400 truncate">{admin?.email || ''}</p>
+            <p className="text-sm font-medium text-gray-900 truncate">{seller?.name || 'Seller'}</p>
+            <p className="text-xs text-gray-400 truncate">{seller?.email || ''}</p>
           </div>
         </div>
         <button
@@ -129,7 +135,6 @@ export default function AdminLayout({ children, title }) {
 
       {/* Main content */}
       <div className="flex-1 md:ml-64 min-w-0">
-        {/* Top bar */}
         <header className="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-4 sm:px-8 sticky top-0 z-20">
           <div className="flex items-center gap-3 min-w-0">
             <button
@@ -141,8 +146,8 @@ export default function AdminLayout({ children, title }) {
             </button>
             <h1 className="text-base sm:text-lg font-semibold text-gray-900 truncate">{title}</h1>
           </div>
-          <Link href="/" target="_blank" className="text-sm text-brand-600 hover:underline whitespace-nowrap ml-4">
-            View Website ↗
+          <Link href="/seller/orders/place" className="btn-primary text-sm py-2 px-4 whitespace-nowrap">
+            + Place Order
           </Link>
         </header>
 

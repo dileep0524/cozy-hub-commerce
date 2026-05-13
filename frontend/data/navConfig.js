@@ -80,4 +80,11 @@ export const NAV_ITEMS = [
     ],
   },
   { label: 'Blogs', href: '/blogs' },
+  {
+    label: 'Login',
+    children: [
+      { label: 'Admin Login', href: '/admin/login' },
+      { label: 'Seller Login', href: '/seller/login' },
+    ],
+  },
 ];
